@@ -1,5 +1,5 @@
 from telegram_control import TelegramController
-from temperature_control import GoogleCalendar
+from ambient_control import AmbientController
 import time
 import logging
 
@@ -7,7 +7,7 @@ def main():
     
     
     # create logger
-    logger = logging.getLogger('google_thermostat')
+    logger = logging.getLogger('thermostat')
     logger.setLevel(logging.DEBUG)
 
     # create console handler and set level to debug
@@ -22,14 +22,12 @@ def main():
 
     # add ch to logger
     logger.addHandler(ch)
-
-
-    telegram_ctrl = TelegramController(logger)
     
-    gc = GoogleCalendar(logger)
-    gc.calendar_event_check()
-
+    telegram_ctrl = TelegramController(logger)
+    ambient_control = AmbientController(logger)
+        
     while 1:
+        ambient_control.auto_control()
         time.sleep(10)
 
 if __name__ == '__main__':
