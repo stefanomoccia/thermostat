@@ -76,8 +76,8 @@ def main():
     telegram_ctrl = TelegramController()
     
     print 'I am listening ...'
-
-   while 1:
+    
+    while 1:
         time.sleep(10)
 
 if __name__ == '__main__':
